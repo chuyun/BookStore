@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        购物车
+    </title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <%include template/link.html %>
+
+        <style type="text/css">
+            .li-img a img {
+                width: 40px;
+                height: 50px;
+            }
+            
+            td {
+                vertical-align: middle!important;
+            }
+        </style>
+</head>
+
+<body>
+    <%include template/topbar.html %>
+
+
+        <%include template/header.html %>
+
+            <div class="sign-page">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col">
+                            <div class="panel">
+                                <!-- Default panel contents -->
+                                <div class="panel-heading">购物车</div>
+
+                                <!-- Table -->
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input id="CheckAll" type="checkbox" /> 全选
+                                            </th>
+                                            <th>商品</th>
+                                            <th>书名</th>
+                                            <th>价格</th>
+                                            <th>数量</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <%for(var i in carts){ if(!carts[i].cId)continue%>
+                                            <tr>
+                                                <td>
+                                                    <input data-id="<%=carts[i]._id%>" data-index="<%=i%>" data-img="<%=carts[i].cImgSrc%>" data-name="<%=carts[i].cName%>" data-price="<%=carts[i].cPrice.replace(/[^0-9||.]/ig,'')%>" name="chkItem" class="li-checkbox input" type="checkbox" />
+                                                    </th>
+                                                    <td>
+                                                        <div class="li-img">
+                                                            <a>
+                                        <img class="li-img a img"  src="<%=carts[i].cImgSrc%>">
+                                    </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="li-content">
+                                                            <a>
+                                                                <%=carts[i].cName%>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="li-price">
+                                                            <span data-price="<%=carts[i].cPrice.replace(/[^0-9||.]/ig,'')%>"><%=carts[i].cPrice.replace(/[^0-9||.]/ig,"")%></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="li-quantity">
+                                                            <a data-type="add" href="javascript:void(0);" class="btn btn-default btn-xs ">+</a>
+                                                            <input id="Q<%=i%>" style="width: 40px;" type="text" value="<%=carts[i].cQuantity%>">
+                                                            <a data-type='subtr' href="javascript:void(0);" class="btn btn-default btn-xs">-</a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="li-del">
+                                                            <a href="/delFromCart/<%=carts[i]._id%>" class="btn btn-primary btn-xs">删除</a>
+                                                        </div>
+                                                    </td>
+                                            </tr>
+                                            <%}%>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="float: right;height: 35px;width:330px;">
+                        总计：<span id="money" style="color: red;font-size: 25px">￥0.00</span>
+                        <input type="button" style="width: 130px;float:right;" class="btn btn-success" onclick="Opening();" value="结 算" />
+
+                        <!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+                        <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
+                        <!--Launch demo modal-->
+                        <!--</button>-->
+                    </div>
+
+                </div>
+            </div>
+
+
+            <%include template/footer.html %>
+                <%include template/goback.html %>
+
+
+                    <div class="alertbox">
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">添加收货人信息</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" class="mb-30 " role="form" id="">
+                                            <div class="form-group mb-30">
+                                                <input id="username-order" class="form-control required" type="text" name="username-order" placeholder="收货人姓名" data-tip="请输入您的姓名" data-valid="isNonEmpty" data-error="用户姓名不能为空" />
+                                            </div>
+                                            <div class="form-group  mb-30">
+                                                <input id="tel-order" type="text" class="form-control required" name="tel-order" placeholder="收货人电话" data-tip="请输入您的电话" data-valid="isNonEmpty" data-error="电话不能为空" />
+                                            </div>
+                                            <div class="form-group  mb-30">
+                                                <input id="address-order" type="text" class="form-control required" name="address-order" placeholder="收货地址" data-tip="请输入您的地址" data-valid="isNonEmpty||between:6-16" data-error="地址不能为空" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                        <button type="button" class="btn btn-primary" id="submit-order">提交</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <script>
+                            setTimeout("$('.alertbox .alert').fadeOut()", 3000);
+                        </script>
+                        <script type="text/javascript">
+                            $(function() {
+                                // 商品+-
+                                $('.li-quantity a').click(function() {
+                                    var self = $(this);
+                                    var type = self.attr('data-type'),
+                                        num = parseFloat(self.siblings('input').val());
+                                    if (type == 'add') {
+                                        num += 1;
+                                        changeQ();
+
+                                    } else if (type == 'subtr') {
+                                        if (num > 1) {
+                                            num -= 1;
+                                            changeQ();
+                                        } else {
+                                            return false;
+                                        }
+                                    }
+                                    self.siblings('input').val(num);
+                                    tamount();
+                                });
+
+                                //checkbox 单选事件
+                                $('input[name="chkItem"]:checkbox').click(function() {
+                                    var isCheck = $('input[name="chkItem"]:not(:checked)').length ? false : true;
+                                    $('#CheckAll').prop("checked", isCheck);
+                                    tamount();
+                                });
+
+                                //checkbox 全选事件
+                                $('#CheckAll').click(function() {
+                                    var self = $(this);
+                                    $('input[name="chkItem"]').each(function() {
+                                        $(this).prop("checked", self.is(':checked'));
+                                    });
+                                    tamount();
+                                });
+
+                            });
+                            var sum = 0;
+
+                            function Opening() {
+                                $('#myModal').modal("show")
+                            }
+
+                            $("#submit-order").click(function() {
+                                Clearing();
+                            })
+
+                            //购物车结算
+                            function Clearing() {
+                                $('input[name="chkItem"]:checked').each(function() {
+                                    var self = $(this),
+                                        index = self.attr('data-index'),
+                                        cid = self.attr('data-id'),
+                                        cimg = self.attr('data-img'),
+                                        cprice = self.attr('data-price'),
+                                        cname = self.attr('data-name'),
+                                        tel_order = $("#tel-order").val(),
+                                        username_order = $('#username-order').val(),
+                                        address_order = $('#address-order').val();
+
+                                    var quantity = $('#Q' + index).val();
+                                    var data = {
+                                        "cid": cid,
+                                        "cnum": quantity,
+                                        "cname": cname
+                                    };
+                                    var orderData = {
+                                        "userName": username_order,
+                                        "userAddress": address_order,
+                                        "userPhone": tel_order,
+                                        'cId': cid,
+                                        "cName": cname,
+                                        "cPrice": cprice,
+                                        "cImgSrc": cimg,
+                                        "cQuantity": quantity
+                                    }
+                                    console.log(orderData);
+                                    $.ajax({
+                                        url: '/cart/clearing',
+                                        type: 'post',
+                                        data: data,
+                                        success: function(data, status) {
+
+                                        },
+                                        error: function(data, status) {
+
+                                        }
+                                    });
+                                    //添加到订单
+                                    $.ajax({
+                                        url: '/cart/order',
+                                        type: 'post',
+                                        data: orderData,
+                                        success: function(data, status) {
+                                            $('#myModal').modal("hide")
+                                        },
+                                        error: function(data, status) {
+
+                                        }
+                                    })
+                                });
+                            }
+
+                            function changeQ() {
+                                $('input[name="chkItem"]:checked').each(function() {
+                                    var self = $(this),
+                                        index = self.attr('data-index'),
+                                        cid = self.attr('data-id');
+
+                                    var quantity = $('#Q' + index).val();
+                                    var data = {
+                                        "cid": cid,
+                                        "cnum": quantity
+                                    };
+                                    $.ajax({
+                                        url: '/cart/change',
+                                        type: 'post',
+                                        data: data,
+                                        success: function(data, status) {
+
+                                        },
+                                        error: function(data, status) {
+
+                                        }
+                                    });
+                                });
+                            }
+                            //计算商品总价格
+                            function tamount() {
+                                sum = 0;
+                                $('input[name="chkItem"]:checked').each(function() {
+                                    var self = $(this),
+                                        price = self.attr('data-price'),
+                                        index = self.attr('data-index');
+                                    var quantity = $('#Q' + index).val();
+                                    console.log(parseFloat(price));
+                                    console.log(parseFloat(quantity));
+                                    sum += (parseFloat(price) * parseFloat(quantity));
+                                });
+                                $("#money").html('￥' + sum.toFixed(2) + '');
+                            }
+                        </script>
+                    </div>
+                    <%include template/IE8-support.html %>
+</body>
+
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        在线书城
+    </title>
+    <meta name="keywords" content="Node.js jQuery 在线商城" />
+    <meta name="description" content="" />
+    <%include template/link.html %>
+</head>
+
+<body>
+    <%include template/topbar.html %>
+
+        <%include template/header.html %>
+
+            <div class="home-background">
+                <div class="container">
+                    <div class="home-main home-main-1">
+                        <h2 class="title pull-left">热门分类</h2>
+                        <ul class="list-inline mb-0 pull-right">
+                            <li><a href="/list/develop">默认</a></li>
+
+                            <li><a href="/list/novel">小说</a></li>
+
+                            <li><a href="/list/develop">开发</a></li>
+
+                            <li><a href="/list/design">设计</a></li>
+
+                            <li><a href="/list/Computer">计算机</a></li>
+
+                        </ul>
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-12 col-20 col">
+                                <ul class="f-cb">
+                                    <li class="itm ">
+                                        <a href="/list/novel">
+                                            <span class="label">小说</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm ">
+                                        <a href="/list/Administered">
+                                            <span class="label">经管</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm itm1">
+                                        <a href="/list/Inspirational">
+                                            <span class="label">成功励志</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm itm1">
+                                        <a href="/list/Humanities">
+                                            <span class="label">人文社科</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm ">
+                                        <a href="/list/Literature">
+                                            <span class="label">文学</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm ">
+                                        <a href="/list/Computer">
+                                            <span class="label">计算机</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm itm1">
+                                        <a href="/list/History">
+                                            <span class="label">历史</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm itm1">
+                                        <a href="/list/Life">
+                                            <span class="label">生活</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm ">
+                                        <a href="/list/develop">
+                                            <span class="label">开发</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm itm1">
+                                        <a href="/list/Magazine">
+                                            <span class="label">杂志</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm itm1">
+                                        <a href="/list/web">
+                                            <span class="label">互联网</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm ">
+                                        <a href="/list/bigData">
+                                            <span class="label">大数据</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm ">
+                                        <a href="/list/design">
+                                            <span class="label">设计</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm itm1">
+                                        <a href="/list/children">
+                                            <span class="label">少儿</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm itm1">
+                                        <a href="/list/ly">
+                                            <span class="label">旅游</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm ">
+                                        <a href="/list/js">
+                                            <span class="label">军事</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm ">
+                                        <a href="/list/ys">
+                                            <span class="label">艺术</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm itm1">
+                                        <a href="/list/fl">
+                                            <span class="label">法律</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm itm1">
+                                        <a href="/list/jy">
+                                            <span class="label">教育</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="itm ">
+                                        <a href="/list/wy">
+                                            <span class="label">外语</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div class="col-md-12 col-80 col">
+
+                                <div class="row">
+                                    <%for(var i in listResult){ if(!listResult[i].title)continue;%>
+                                        <div class="col-md-5 col thumbnail book-list-detail">
+                                            <div class="col-md-4 col ">
+                                                <div class=" text-center pro-0">
+                                                    <span class="sale sale2">新品</span>
+                                                    <a href="/book/?<%=listResult[i].isbn10%>">
+                                        <img
+                                                src="<%=listResult[i].images.large%>"
+                                                alt="<%=listResult[i].title%>">
+                                    </a>
+                                                    <div class="caption">
+
+                                                        <div class="price">
+                                                            <%=listResult[i].price%>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6 col-md-offset-1">
+                                                <div class="info">
+                                                    <div class="wrap">
+                                                        <a href="/book/?<%=listResult[i].isbn10%>" class="title">
+                                                            <%=listResult[i].title%>
+                                                        </a>
+                                                        <div class="u-stargrade">
+                                                            <div class="icon grade9"></div>
+                                                            <span class="num"><%=listResult[i].rating.numRaters%></span>
+                                                        </div>
+                                                        <p class="u-author" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                                            <%if(listResult[i].author!=""){%>
+                                                                <%=listResult[i].author%>
+                                                                    <%}else{%>
+                                                                        作者不详
+                                                                        <%}%>
+                                                        </p>
+                                                        <p class="desc" style="height: 60px;overflow: hidden;text-overflow: ellipsis">
+                                                            <%if(listResult[i].author_intro!=""){%>
+                                                                <%=listResult[i].author_intro%>
+                                                                    <%}else{%>
+                                                                        简介暂无
+                                                                        <%}%>
+
+                                                        </p>
+                                                    </div>
+                                                    <a href="/book/?<%=listResult[i].isbn10%>" class="u-btn2" target="_blank">详 情</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <%}%>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="alertbox">
+
+
+                <%include template/footer.html %>
+
+                    <%include template/goback.html %>
+
+
+
+                        <script type="text/javascript">
+                            //
+                            <!--选项卡-->
+                            $(document).ready(function() {
+                                var widget = $('.tabs-colorful-icons');
+
+                                var tabs = widget.find('ul a'),
+                                    content = widget.find('.tabs-content-placeholder > div');
+                                tabs.on('click', function(e) {
+                                    e.preventDefault();
+
+                                    // Get the data-index attribute, and show the matching content div
+
+                                    var index = $(this).data('index');
+
+                                    tabs.removeClass('tab-active');
+                                    content.removeClass('tab-content-active');
+
+                                    $(this).addClass('tab-active');
+                                    content.eq(index).addClass('tab-content-active');
+
+                                });
+
+                                //        $('#add-cart').click(function () {
+                                //            var book_id=$('_id').val();
+                                //            var postURL={book_id:book_id}
+                                //
+                                //            $.ajax({
+                                //                url: '/addCart',
+                                //                type: 'POST',
+                                //                data: postURL,
+                                //                success: function (data, status) {
+                                //                    if (status == 'success') {
+                                ////                        location.href = 'login';
+                                //                    }
+                                //                },
+                                //                error: function (data, err) {
+                                ////                    location.href = 'register';
+                                //                }
+                                //            })
+                                //
+                                //        })
+                                //
+
+                            });
+                        </script>
+
+
+                        <script>
+                            setTimeout("$('.alertbox .alert').fadeOut()", 3000);
+                        </script>
+            </div>
+</body>
+<%include template/IE8-support.html %>
+
+</html>

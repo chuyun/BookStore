@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户</title>
+
+    <%include ../template/link.html %>
+</head>
+<body>
+
+<div class="sign-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col">
+                <div class="panel">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">用户</div>
+
+                    <!-- Table -->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>用户名</th>
+                            <th>密码</th>
+                            <th>邮件</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <%for(var i in userList){ if(!userList[i].name)continue%>
+                        <tr>
+                            <td>
+                                <a ><%=userList[i].name%></a>
+                            </td>
+                            <td>
+                                <span><%=userList[i].password%></span>
+                            </td>
+                            <td>
+                                <span><%=userList[i].email%></span>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);">修改</a>
+                            </td>
+                            <td>
+                                <a href="/admin/user/<%=userList[i]._id%>" class="btn btn-danger btn-xs">删除</a>
+                            </td>
+                        </tr>
+                        <%}%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

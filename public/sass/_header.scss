@@ -1,0 +1,644 @@
+@import "compass";
+@import "compass/css3";
+// Import Bootstrap Compass integration
+@import "bootstrap-compass";
+// Import custom Bootstrap variables
+@import "bootstrap-variables";
+// Import Bootstrap for Sass
+@import "bootstrap";
+@import "susy";
+@import "grid";
+
+.header-top {
+  height: 36px;
+
+  .warp {
+    margin: 10px auto;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: #cccccc;
+
+    }
+
+    p {
+      display: inline;
+      float: left;
+    }
+
+    //background-color: #cccccc;
+    @include clearfix;
+
+    ul {
+      @include float-right;
+
+      li {
+        @include float-left;
+        padding: 0 10px;
+        a, span {
+          color: #613f23;
+        }
+
+        .register {
+
+          &::after {
+            content: "";
+            width: 2px;
+            height: 20px;
+            background-color: #FFF;
+          }
+        }
+        .cart {
+
+          &::before {
+            //content: "icon-shopping-cart";
+            font-family: FontAwesome !important;
+            content: "\f07a";
+            margin-right: 4px;
+          }
+        }
+      }
+      //关注
+
+      .u-dwnmenu {
+        position: relative;
+        //background-color: #00b3ee;
+        &:hover {
+          .cnt {
+            display: block;
+          }
+        }
+        .txt {
+          &::before {
+            font-family: FontAwesome !important;
+            content: "\f067";
+            margin-right: 4px;
+          }
+          &::after {
+            font-family: FontAwesome !important;
+            content: "\f0d7";
+            margin-left: 4px;
+          }
+
+        }
+        .cnt {
+          display: none;
+          position: absolute;
+          background-color: #FFF;
+          //top: 40px;
+          z-index: 20;
+          padding-top: 10px;
+
+          .qr {
+            td {
+              img {
+                margin: 4px;
+              }
+              span {
+                display: block;
+                font-size: 6px;
+                color: #666;
+                text-align: center;
+
+              }
+            }
+
+          }
+
+        }
+      }
+      // 快速导航
+      .fast-navigation {
+        position: relative;
+        &:hover {
+          .drop {
+            display: block;
+          }
+
+        }
+        span {
+          margin-left: 4px;
+          &::after {
+            font-family: FontAwesome !important;
+            content: "\f0d7";
+            margin-left: 4px;
+          }
+        }
+        .drop {
+          display: none;
+          position: absolute;
+          background-color: #FFF;
+          padding-top: 10px;
+
+          a {
+            font-size: 10px;
+            color: #666;
+          }
+
+        }
+
+      }
+
+    }
+  }
+
+}
+
+.search {
+  margin: 40px auto;
+  height: 48px;
+}
+
+header {
+  @include clearfix;
+  height: 44px;
+  background-color: #fa7a20;
+  margin: 6px auto;
+  ul {
+    margin: 0 auto;
+    @include clearfix;
+    width: 384px; // 460px-->li*6
+
+    li {
+      @include float-left;
+      &:hover {
+        background-color: #d36a1e;
+      }
+
+      a {
+        font-weight: bold;
+        color: #FFF;
+        line-height: 44px;
+        font-size: 16px;
+        padding: 10px 20px;
+        &:hover {
+          text-decoration: none;
+          color: #FFF;
+
+        }
+      }
+    }
+  }
+
+}
+
+.block-01 {
+  .classification {
+    .m-directory {
+      h5 {
+        margin: 0;
+        line-height: 48px;
+        font-weight: bolder;
+        background-color: #E7E2DD;
+
+      }
+
+      ul.f-cb {
+        @include clearfix;
+        li {
+          @include float-left;
+          width: 50%;
+          //height: 40px;
+
+          &:nth-child(4n+1), &:nth-child(4n+2) {
+            background-color: #F4F2EF;
+          }
+          &:nth-child(4n+3), &:nth-child(4n+4) {
+            background-color: #E7E2DD;
+          }
+          a {
+            span {
+              color: #613F23;
+              line-height: 51px;
+              font-size: 12px;
+
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  .main {
+    .pj-Carousel {
+      height: 240px;
+      margin: 0px auto;
+      overflow: hidden;
+      position: relative;
+    }
+    .pj-Carousel-box {
+      height: 240px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .pj-Carousel-item {
+      float: left;
+      height: 240px;
+      //background-color: #E3E3E3;
+      text-align: center;
+      font-family: "Arial Black";
+      //color: #979797;
+      font-size: 40px;
+    }
+    .pj-Carousel-active {
+      position: absolute;
+      bottom: 10px;
+      right: 0;
+      margin: auto auto;
+      z-index: 5;
+    }
+    .pj-Carousel-color {
+      background-color: #A2A2A2;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      float: left;
+      margin: 0px 5px;
+    }
+    .pj-Carousel .active {
+      background-color: #272727;
+    }
+
+    #pj-lunbo-main {
+      position: relative;
+    }
+
+    #prev, #next {
+      height: 40px;
+      position: absolute;
+      top: calc(50% - 20px);
+      z-index: 10;
+      border: none;
+      @include opacity(0.1);
+      &:hover {
+        @include opacity(1);
+      }
+    }
+    #prev {
+      left: 0;
+    }
+    #next {
+      right: 0;
+    }
+
+    //  重磅推荐
+    .recommend {
+      //background-color: red;
+      h5 {
+        color: #E25139;
+        &::after {
+          content: "";
+          display: block;
+          height: 1px;
+          width: 100%;
+          background-color: #cccccc;
+          margin: 10px 0;
+        }
+      }
+      ul {
+        @include clearfix;
+        margin: 40px 0;
+        li {
+          &:first-child {
+            &:after {
+              content: "";
+              display: block;
+              width: 1px;
+              height: 100%;
+              background-color: #cccccc;
+
+            }
+          }
+          //background-color: #00b3ee;
+          width: 50%;
+          @include float-left;
+
+          .book {
+            @include float-left;
+            width: 40%;
+            .cover {
+              img {
+                width: 80%;
+                margin: 10px 10%;
+              }
+            }
+            .u-price {
+              text-align: center;
+
+              em, del {
+                font-size: 12px;
+              }
+              del {
+                color: #ccc;
+              }
+            }
+          }
+          .info {
+            @include float-right;
+            //background-color: #1b6d85;
+            width: 60%;
+            .wrap {
+              height: 140px;
+              overflow: hidden;
+
+              //background-color: #00b3ee;
+              a.title {
+                font-size: 14px;
+                &:hover {
+                  color: #E25139;
+                }
+              }
+              span, p {
+                font-size: 12px;
+              }
+            }
+            .u-btn2 {
+              padding: 4px 10px;
+              background-color: #4D87DE;
+              color: #FFF;
+
+            }
+
+          }
+        }
+      }
+
+      .events {
+        border: 1px solid #F9DDC9;
+        background-color: #FDF6E2;
+        height: 38px;
+        overflow: hidden;
+        @include clearfix;
+        h5 {
+          color: #E25139;
+          font-weight: bold;
+
+          @include float-left;
+          padding: 0 10px;
+          &::after {
+            content: "";
+            display: block;
+            width: 1px;
+            height: 14px;
+            background-color: red;
+            position: relative;
+            top: -24px;
+            right: -65px;
+          }
+
+        }
+        ul.news {
+          //padding: 0 10px;
+          @include float-left;
+          //background-color: #00b3ee;
+          margin: 8px 10px;
+          li {
+            //margin: 10px 0;
+            //line-height: 16px;
+            width: 100% !important;
+          }
+        }
+      }
+
+    }
+
+  }
+
+  .rightArea {
+
+    h5 {
+      font-size: 14px;
+      font-weight: bold;
+
+    }
+    p {
+      font-size: 12px;
+    }
+    .login {
+      background-color: #F4F2EF;
+      padding: 26px 8px;
+
+      a {
+        display: inline-block;
+        width: 80%;
+        //padding: 4px 60px;
+        background-color: #00b3ee;
+        text-align: center;
+        margin: 4px 10%;
+        line-height: 30px;
+
+        @include border-radius(4px);
+
+        &:nth-child(2n+1) {
+          background-color: #E25139;
+          color: #FFF;
+        }
+        &:nth-child(2n+2) {
+          background-color: #FFF;
+          color: #666;
+        }
+      }
+    }
+
+    .new-book {
+      background-color: #F4F2EF;
+      padding: 8px;
+      margin: 20px auto;
+
+      //轮播部分
+
+      .pj-Carousel {
+        //width: 500px;
+        height: 200px;
+        margin: 0px auto;
+        overflow: hidden;
+        position: relative;
+      }
+      .pj-Carousel-box {
+        height: 200px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .pj-Carousel-item {
+        float: left;
+        //height: 300px;
+        //background-color: #E3E3E3;
+        text-align: center;
+        //line-height: 200px;
+        font-family: "Arial Black";
+        color: #979797;
+        font-size: 40px;
+
+        p {
+
+          font-size: 12px !important;
+          margin: 16px auto;
+          text-align: center;
+        }
+      }
+      .pj-Carousel-active {
+        position: absolute;
+        bottom: 10px;
+        margin: auto auto;
+        z-index: 5;
+      }
+      .pj-Carousel-color {
+        background-color: #A2A2A2;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        float: left;
+        margin: 0px 5px;
+      }
+      .pj-Carousel .active {
+        background-color: #272727;
+      }
+
+    }
+
+  }
+
+}
+
+.block-02 {
+  .left-list {
+    h5 {
+
+    }
+
+    ul {
+
+      li {
+        em {
+          line-height: 52px;
+        }
+
+        .author {
+          //height: 52px;
+          display: inline-block;
+          //line-height: 52px;
+          //text-align: center;
+          //background-color: red;
+          position: relative;
+          top: 10px;
+          left: 10px;
+          a {
+            font-size: 12px;
+          }
+          p {
+            font-size: 12px;
+            margin: 0;
+            width: 200px;
+          }
+        }
+      }
+    }
+
+  }
+
+  .books-gallery {
+    a {
+      font-size: 12px;
+      color: #333
+    }
+
+    ul {
+      li {
+        float: left;
+        width: 14%;
+        margin: 4px 1px;
+        height: 240px;
+        //background-color: #cccccc;
+        //border: 1px solid #ccc;
+        .book {
+          img {
+            width: 90%;
+            height: 100px;
+            margin: 10px 5%;
+          }
+        }
+        .info {
+          .title{
+            line-height: 40px;
+          }
+          .u-stargrade {
+            .icon {
+              //background-color: aqua;
+              width: 50%;
+              height: 16px;
+              display: inline-block;
+              background: url("../images/star/star.png")top center no-repeat;
+            }
+            span.num {
+              position: relative;
+              top: -4px;
+            }
+          }
+
+          .u-author {
+            span {
+              font-size: 12px;
+            }
+            width: 100%;
+            overflow: hidden; /*自动隐藏文字*/
+            text-overflow: ellipsis; /*文字隐藏后添加省略号*/
+            white-space: nowrap; /*强制不换行*/
+          }
+          .u-price {
+            //text-align: center;
+            em {
+              font-weight: bold;
+              font-size: 12px
+            }
+            del {
+              color: #666;
+              font-size: 12px
+            }
+          }
+        }
+      }
+
+    }
+
+  }
+
+}
+
+
+
+.u-fbox {
+  position: fixed;
+  bottom: 75px;
+  z-index: 600;
+  right: 16px;
+
+  #gotop {
+    display: block;
+    width: 48px;
+    height: 36px;
+    padding-top: 8px;
+    text-align: center;
+    background: #c9c8c6;
+    color: #f5f5f4;
+
+    .cnt{
+      position: relative;
+      &::before{
+        font-family: FontAwesome!important;
+        content: "\f106";
+        position: absolute;
+        top:-15px;
+        left: 9px;
+      }
+    }
+  }
+
+
+}
+

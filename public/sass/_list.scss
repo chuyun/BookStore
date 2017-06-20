@@ -1,0 +1,118 @@
+//书籍分类
+
+.list-content{
+
+  .list-left{
+    .classification{
+      .m-directory{
+        ul.f-cb{
+          li {
+            height: 30px;
+
+            a {
+              span {
+                color: #999;
+                font-size: 14px;
+                font-weight: normal;
+                line-height: 30px;
+              }
+            }
+          }
+        }
+
+      }
+
+
+    }
+
+
+  }
+
+  .list-right{
+    @include clearfix;
+
+    ul {
+      @include clearfix;
+      margin: 40px 0;
+      li {
+        //background-color: #2b542c;
+        height: 200px;
+        margin: 10px 0;
+
+
+        @include float-left;
+        &:first-child {
+          &:after {
+            content: "";
+            display: block;
+            width: 1px;
+            height: 100%;
+            background-color: #cccccc;
+
+          }
+        }
+        //background-color: #00b3ee;
+        width: 45%;
+        @include float-left;
+
+        .book {
+          @include float-left;
+          width: 40%;
+          .cover {
+            img {
+              width: 80%;
+              margin: 10px 10%;
+            }
+          }
+          .u-price {
+            text-align: center;
+
+            em, del {
+              font-size: 12px;
+            }
+            del {
+              color: #ccc;
+            }
+          }
+        }
+        .info {
+          @include float-left;
+          height: 200px;
+          position: relative;
+          //background-color: #1b6d85;
+          width: 40%;
+          .wrap {
+            height: 140px;
+            overflow: hidden;
+
+            //background-color: #00b3ee;
+            a.title {
+              font-size: 14px;
+              &:hover {
+                color: #E25139;
+              }
+            }
+            span, p {
+              font-size: 12px;
+            }
+            .desc{
+              height: 64px;
+              overflow: hidden;
+            }
+          }
+          .u-btn2 {
+            padding: 4px 10px;
+            background-color: #4D87DE;
+            color: #FFF;
+            position: absolute;
+            bottom: 20px;
+
+          }
+
+        }
+      }
+    }
+
+
+  }
+}

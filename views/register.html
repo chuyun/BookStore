@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        用户注册
+    </title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <%include template/link.html %>
+
+    <script src="../js/lib/jquery-validate.js" type="text/javascript"></script>
+    <link href="../css/drag.css" rel="stylesheet" type="text/css">
+
+    <script src="../js/drag.js" type="text/javascript"></script>
+    <script src="../js/tools.js" type="text/javascript"></script>
+
+    <style type="text/css">
+
+
+        .form-group {
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+
+        .form-group.active {
+            border: 1px #32BC61 solid;
+            background-color: #fff;
+        }
+
+        .form-group.error {
+            border: 1px #f00 solid;
+            background-color: #FBF9BB;
+        }
+
+        .form-group.error input[type="text"],
+        .form-group.error input[type="password"] {
+            background-color: #FBF9BB;
+            color: #f00;
+        }
+
+        input {
+            width: 100%;
+            height: 34px;
+        }
+
+        .form-group .valid_message {
+            color: #32BC61;
+            position: absolute;
+
+            /*width: 200px;*/
+            top: 54px;
+            left: 10px;
+        }
+
+        .form-group.error .valid_message {
+            color: #f00;
+        }
+
+        .form-group.success .valid_message {
+            background: url(./images/sucess.png) no-repeat;
+            left: auto;
+            right: 16px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<%include template/topbar.html %>
+
+<%include template/header.html %>
+
+<div class="sign-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 col">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!--img src="/img/sprite_login.gif" id="sprite-login" /-->
+                        <div class="text-center">
+                            <a href="/home">
+                                <img src="/img/logo.svg" />
+                            </a>
+                            <h2 class="title mb-40">
+                                注册帐号
+                            </h2>
+                        </div>
+                        <form method="post" class="mb-30 " role="form" id="submitReg">
+
+                            <div class="form-group mb-30">
+                                <input id="useremail" class="form-control required" type="text"  name="useremail" placeholder="example@example.com" data-tip="请输入您的邮箱"
+                                       data-valid="isNonEmpty||isEmail" data-error="email不能为空||邮箱格式不正确"/>
+                            </div>
+                            <div class="form-group  mb-30">
+                                <input id="username" type="text" class="form-control required" name="username"
+                                       placeholder="用户名" data-tip="请输入您的姓名" data-valid="isNonEmpty||between:3-16"
+                                       data-error="姓名不能为空||姓名长度为2-5位"/>
+                            </div>
+                            <div class="form-group  mb-30">
+                                <input id="password"  type="password" class="form-control required" name="password"
+                                       placeholder="密码" data-tip="请输入您的密码" data-valid="isNonEmpty||between:6-16"
+                                       data-error="密码不能为空||密码长度6-16位"/>
+                            </div>
+                            <div class="form-group  mb-30">
+                                <input id="confirmpwd"  type="password" class="form-control required"
+                                       name="confirmpwd" placeholder="确认密码" data-tip="请再次输入密码"
+                                       data-valid="isNonEmpty||isSamePassword" data-error="两次密码不一致"/>
+                            </div>
+                            <div class="form-group  mb-30">
+                                <div id="drag"></div>
+                            </div>
+                            <button type="button" class="btn btn-warning btn-block form-control" onclick="submitIt()">立即注册</button>
+                        </form>
+                        <div class="bottom text-center">
+                            <ul class="list-inline mb-0">
+                                <li><a href="/login">已有账号？ 立即登录</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%include template/footer.html %>
+
+<%include template/goback.html %>
+
+<div class="alertbox">
+
+
+    <script>
+        setTimeout("$('.alertbox .alert').fadeOut()",3000);
+    </script>
+
+
+    <script type="text/javascript">
+        function submitIt() {
+//        console.log( $('form').validate('submitValidate'));
+            if ($('form').validate('submitValidate') && dragPass) {
+                register();
+            } else {
+                return;
+            }
+        }
+
+        function register() {
+            var name = $('#username').val(),
+                password = $('#password').val(),
+                email = $("#useremail").val(),
+                nowDate = getNowFormatDate();
+            console.log(nowDate)
+            var data = {
+                "uname": name,
+                "upwd": password,
+                "uemail": email,
+                "nowDate": nowDate
+            };
+
+            $.ajax({
+                url: '/register',
+                type: 'POST',
+                data: data,
+                success: function (data, status) {
+                    if (status == 'success') {
+                        location.href = 'login';
+                    }
+                },
+                error: function (data, err) {
+                    location.href = 'register';
+                }
+            });
+        }
+    </script>
+
+
+    <script type="text/javascript">
+
+        var dragPass = false;
+        $('#drag').drag();
+
+        $('form').validate({
+            onFocus: function () {
+                this.parent().addClass('active');
+                return false;
+            },
+
+            onBlur: function () {
+                var $parent = this.parent();
+                var _status = parseInt(this.attr('data-status'));
+                $parent.removeClass('active');
+                if (!_status) {
+                    $parent.addClass('error');
+                }
+                return false;
+            }
+        });
+        //    用于submit提交
+        //    $('form').on('submit', function (event) {
+        //        event.preventDefault();
+        //        $(this).validate('submitValidate'); //return boolean;
+        //        console.log(this);
+        //    });
+
+    </script>
+
+
+
+</div>
+
+<%include template/IE8-support.html %>
+</body>
+</html>

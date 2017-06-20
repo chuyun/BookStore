@@ -1,0 +1,83 @@
+@import "compass";
+@import "compass/reset";
+@import "compass/css3";
+@import "susy";
+
+$susy: (
+        columns:12,
+        container:1280px,
+        gutter:.25,
+        global-box-sizing:border-box,
+);
+@include border-box-sizing;
+
+.container {
+  @include container;
+  @include clearfix;
+
+  .block-01 {
+    @include span(12 last);
+
+    .classification {
+      @include span(3);
+    }
+    .main {
+      @include span(6);
+    }
+    .rightArea {
+      @include span(3 last);
+    }
+  }
+
+  .block-02 {
+    @include span(12 last);
+
+    .left-list {
+      @include span(3);
+      //height: 200px;
+      //background-color: #ccc;
+    }
+    .books-gallery {
+      @include span(9 last);
+      //height: 200px;
+      //background-color: #999;
+    }
+
+  }
+
+}
+
+footer{
+  .wrap {
+    @include container;
+    @include clearfix;
+  }
+
+}
+
+
+.list-content{
+  @include clearfix;
+  width: 1280px;
+  margin: 0 auto;
+//background-color: #2b542c;
+  .list-left{
+    margin-left: span(1);
+    @include span(3);
+    //height: 400px;
+    //height: 100%;
+    //background-color: #ccc;
+
+
+  }
+
+  .list-right{
+    @include span(8 last);
+    //margin-right: span(1 last);
+    //height: 400px;
+    //height: 100%;
+    //background-color: #1b6d85;
+
+
+  }
+}

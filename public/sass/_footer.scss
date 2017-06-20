@@ -1,0 +1,36 @@
+@import "compass";
+
+
+
+footer{
+  padding: 20px 0;
+  background-color: #f9f9f9;
+  &::before{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #c8c8c8;
+  }
+
+  .wrap{
+    .link {
+      //margin: 0 50%;
+      //background-color: red;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    p.copyright{
+      text-align: center!important;
+    }
+
+
+
+  }
+
+
+
+
+
+}

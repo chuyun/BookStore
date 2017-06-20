@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        用户登录
+    </title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <%include template/link.html %>
+</head>
+<body>
+<%include template/topbar.html %>
+
+<%include template/header.html %>
+
+<div class="sign-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 col">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="/img/sprite_login.gif" id="sprite-login" />
+                        <div id="sprite-login-box" class="text-center">
+                            <h2 class="title">使用微信扫码登录</h2>
+                            <!-- https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx694e871052e3d8ac&redirect_uri=#&response_type=code&scope=snsapi_base&state=123#wechat_redirect -->
+                            <img src="create_qrcode-text=https-%7C%7Copen.weixin.qq.com%7Cconnect%7Coauth2%7Cauthorize-appid=wx694e871052e3d8ac&amp;redirect_uri=http-%7C%7Cdemo.mao10.com%7Cconnect%7Cweixin&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=5990515180-wechat_redirect.png" />
+                            <i class="fa fa-times-circle"></i>
+                        </div>
+                        <div class="text-center">
+                            <a href="/home">
+                                <img src="/img/logo.svg" />
+                            </a>
+                            <h2 class="title mb-40">
+                                帐号登录
+                            </h2>
+                        </div>
+                        <%- message %>
+                        <form method="post" class="mb-30">
+                            <div class="form-group">
+                                <input id="username" value="" type="text" class="form-control" name="username" placeholder="用户名" />
+                            </div>
+                            <div class="form-group mb-30">
+                                <input id="password" value="" type="password" class="form-control" name="password" autocomplete="off" placeholder="密码" />
+                            </div>
+                            <button onclick="login();" class="btn btn-warning btn-block">立即登录</button>
+                        </form>
+                        <div class="sns-login">
+                            <div class="text">其他方式登录</div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="iconfont">
+                            <a class="connect-btn qq" href="https://graph.qq.com/oauth/show?which=ConfirmPage&amp;response_type=code&amp;client_id=1030513132&amp;redirect_uri=https://chuyun.github.io/connect/qq&amp;state=40686&amp;scope=get_user_info">
+                                <i></i>
+                            </a>
+                            <a class="connect-btn weibo" href="/login#">
+                                <i></i>
+                            </a>
+                            <a class="connect-btn alipay" href="/login#">
+                                <i></i>
+                            </a>
+                        </div>
+                        <div class="bottom text-center">
+                            <ul class="list-inline mb-0">
+                                <li><a href="/register">注册账号</a></li>
+                                <li>|</li>
+                                <li><a href="/login#">忘记密码?</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function login(){
+        var username = $('#username').val(),
+            password = $('#password').val()
+        var data = {
+            "uname": username,
+            "upassword":password,
+
+        };
+        $.ajax({
+            url:'/login',
+            type:'POST',
+            data:data,
+            success:function(data,status){
+                if(status == 'success'){
+                    location.href='home';
+                }
+            },
+            error:function(data,status){
+                if(status == "error"){
+                    location.href='login'
+                }
+            }
+        });
+    }
+</script>
+
+<script>
+    $('#sprite-login').click(function(){
+        $('#sprite-login-box').css('display','block');
+    });
+    $('#sprite-login-box i').click(function(){
+        $('#sprite-login-box').css('display','none');
+    });
+    function get_data() {
+        $.ajax({
+            type: 'GET',
+            url: '/connect/weixin/5990515180',
+            success: function(data) {
+                if(data.code==2) {
+                    //alert('授权成功');
+                    location.href = '/reg'
+                } else {
+                    //alert('授权失败');
+                }
+            },
+        });
+    };
+    setInterval("get_data()",1000);
+</script>
+
+<%include template/footer.html %>
+<%include template/goback.html %>
+<div class="alertbox">
+
+
+
+    <script>
+        setTimeout("$('.alertbox .alert').fadeOut()",3000);
+    </script>
+</div>
+<%include template/IE8-support.html %>
+</body>
+</html>

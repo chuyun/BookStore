@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.min.css">
+    <script src="../../routes/admin.js"></script>
+</head>
+<body>
+<!-- 上 -->
+<div class="navbar navbar-inverse">
+    <a class="navbar-brand" href="#">
+        后台管理
+    </a>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+
+        <ul class="nav navbar-nav">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">用户管理</a></li>
+            <li><a href="#">商品管理</a></li>
+        </ul>
+
+    </div>
+</div>
+<!-- 左 -->
+<div class="sidebar-nav">
+
+    <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>运营管理</a>
+    <ul id="accounts-menu" class="nav nav-list collapse">
+        <li><a href="/admin/goods">商品管理</a></li>
+        <li><a href="/admin/order">订单管理</a></li>
+
+    </ul>
+    <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统权限</a>
+    <ul id="error-menu" class="nav nav-list collapse">
+        <li><a href="/admin/user">用户管理</a></li>
+
+    </ul>
+    <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>
+    <ul id="legal-menu" class="nav nav-list collapse">
+        <li><a href="admin/login">登录页面</a></li>
+        <li><a href="/register">注册页面</a></li>
+        <li><a href="/admin/user">密码修改</a></li>
+    </ul>
+    <a href="https://chuyun.github.io" target="_blank" class="nav-header"><i class="icon-exclamation-sign"></i>关于</a>
+</div>
+<!-- 右 -->
+<div class="content">
+    <!-- header -->
+    <div class="header">
+        <h1 class="page-title">👏 欢迎来到后台管理系统 ！</h1>
+    </div>
+    <!-- highchat show -->
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
+
+    </div>
+    <!-- footer -->
+    <footer>
+        <hr>
+        <p>© 2017 <a href="https://chuyun.github.io/" target="_blank">CHUYUN</a></p>
+    </footer>
+</div>
+</body>
+
+</html>

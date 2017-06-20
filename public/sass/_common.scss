@@ -1,0 +1,37 @@
+@import "compass/reset";
+//@import "compass/utilities/sprites";    // 加载compass sprites模块
+//@import "star/*.png";                    // 导入star目录下所有png图片
+//@include all-share-sprites;                // 输出所有的雪碧图css
+
+ul{
+  list-style: none;
+}
+
+a{
+  list-style: none;
+  text-decoration: none;
+  &:hover,&:focus{
+    list-style: none!important;
+    text-decoration: none!important;
+  }
+
+}
+
+span{
+  color: #999;
+}
+
+
+.u-stargrade {
+  .icon {
+    //background-color: aqua;
+    width: 50%;
+    height: 16px;
+    display: inline-block;
+    background: url("../images/star/star.png") center left no-repeat;
+  }
+  span.num {
+    position: relative;
+    top: -4px;
+  }
+}

@@ -1,0 +1,61 @@
+<div class="topbar">
+    <div class="container">
+        <ul class="list-inline mb-0 pull-left">
+            <li><a href="/home">首页</a></li>
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">问题反馈</a></li>
+        </ul>
+        <ul class="list-inline mb-0 pull-right">
+
+            <li><a href="/login">登录</a></li>
+            <li><a href="/register">注册</a></li>
+
+            <li class="cart-box">
+                <a class="cart" href="/cart">
+                    <i class="fa fa-cart-plus"></i> 购物车（<span id="number">0</span>）
+                </a>
+                <div class="cart-menu drop-down">
+                    <div class="panel panel-default" id="cartHead">
+
+
+                    </div>
+                </div>
+                <script>
+                    $.ajax({
+                        type: 'GET',
+                        url: '/info',
+                        success: function (result) {
+                            console.log(result.data.length);
+
+                            if (result.data.length > 0) {
+                                console.log(result.data.length);
+                                var count = 0;
+                                $('#cartHead').append('<ul class="list-group" id="cartHeadList"></ul>');
+                                for (var i = 0; i < result.data.length; i++) {
+                                    var item = result.data[i];
+
+                                    count = count + parseFloat(item.cPrice) * item.cQuantity;
+                                    $('#cartHeadList').append('<li class="list-group-item"><div class="media mb-0"><div class="media-left"><a class="img-div" href="#"><img class="media-object" src=" ' + item.cImgSrc + '" ></a></div><div class="media-body"><h5 class="media-heading mt-10">' + item.cName + '<span class="pull-right">' + item.cPrice + ' x ' + item.cQuantity + '</span></h5></div></div></li>');
+                                    $('.cart-box').addClass('active');
+                                    $('.cart-box .cart span').text(result.data.length);
+                                }
+                                ;
+
+                                $('#cartHead').append('<div class="panel-footer"><div class="row"><div class="col-md-6 col">共' + result.data.length + '件商品<h3>' + count + '<small>元</small></h3></div><div class="col-md-6 col"><a class="btn btn-warning btn-block" href="/cart">去购物车结算</a></div></div></div>');
+                            } else {
+                                $('#cartHead').append('<div class="panel-body">购物车中还没有商品，赶紧选购吧！</div>');
+                            }
+
+                        },
+                        error: function (p) {
+                            console.log('无法加载购物车信息');
+                        }
+
+
+                    });
+                </script>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>

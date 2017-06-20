@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        在线书城
+    </title>
+    <meta name="keywords" content="Node.js jQuery 在线商城"/>
+    <meta name="description" content=""/>
+    <%include template/link.html %>
+
+</head>
+<body>
+
+<%include template/topbar.html %>
+
+<%include template/header.html %>
+
+<div class="container home-background">
+
+    <!--书籍信息-->
+    <div class="book-main thumbnail">
+        <div class="book-detail">
+
+            <!--book image-->
+            <img src="<%=TheBook.images.large%>" alt="<%=TheBook.title%>" width="180px" height="236px">
+            <!--书籍右侧信息-->
+            <div class="book-right">
+                <h3><%=TheBook.title%></h3>
+
+                <div class="u-stargrade">
+                    <div class="icon grade9"></div>
+                    <span class="num">(<%=TheBook.rating.numRaters%>个评分)</span>
+                </div>
+
+                <div class="u-author">
+                    <p>作者:<%=TheBook.author%></p>
+                    <p>版权:
+                        <%if(TheBook.publisher!=""){%>
+                        <%=TheBook.publisher%>
+                        <%}else{%>
+                        暂无
+                        <%}%>
+                    </p>
+                    <p>出版:
+                        <%if(TheBook.pubdate!=""){%>
+                        <%=TheBook.pubdate%>
+                        <%}else{%>
+                        暂无
+                        <%}%>
+                    </p>
+                </div>
+
+                <div class="u-price">
+                    <em><%=TheBook.price%></em>
+                    <span>原价:</span>
+                    <del>¥ 50.00</del>
+                </div>
+                <a href="/addToCart/<%=TheBook._id%>">加入购物车</a>
+            </div>
+
+        </div>
+
+        <div class="tabs-colorful-icons">
+            <ul>
+                <li>
+                    <a class="first-tab tab-active" data-index="0" href="#"><i class="fa fa-gift"></i>简介</a>
+                </li>
+                <li>
+                    <a class="second-tab" data-index="1" href="#"><i class="fa fa-tachometer"></i>目录</a>
+                </li>
+                <li>
+                    <a class="third-tab" data-index="2" href="#"><i class="fa fa-cogs"></i> 更多信息</a>
+                </li>
+            </ul>
+
+            <div class="tabs-content-placeholder">
+
+                <div class="tab-content-active">
+                    <p><%=TheBook.summary%></p>
+                    <!--<img src="assets/images/pictures/sands-of-life.jpg" alt="Sands of Life">-->
+                </div>
+
+                <div>
+
+                    <pre style="text-align: left"><%=TheBook.catalog%></pre>
+
+                    <!--<img src="assets/images/pictures/colosseum.jpg" alt="Colosseum">-->
+                </div>
+
+                <div>
+                    <p>作者：<%=TheBook.author%></p>
+                    <p>系列: <%=TheBook.series.title%></p>
+                    <p>大小：<%=TheBook.pages%> 页</p>
+                    <p>出版：<%=TheBook.publisher%></p>
+                    <p>更新：<%=TheBook.pubdate%></p>
+                    <p>作者简介：<%=TheBook.author_intro%></p>
+
+
+                    <!--<img src="assets/images/pictures/bahnhoff.jpg" alt="Bahnhoff">-->
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<%include template/footer.html %>
+
+<%include template/goback.html %>
+
+<script type="text/javascript">
+
+    <!--选项卡-->
+    $(document).ready(function () {
+        var widget = $('.tabs-colorful-icons');
+
+        var tabs = widget.find('ul a'),
+            content = widget.find('.tabs-content-placeholder > div');
+        tabs.on('click', function (e) {
+            e.preventDefault();
+
+            // Get the data-index attribute, and show the matching content div
+
+            var index = $(this).data('index');
+
+            tabs.removeClass('tab-active');
+            content.removeClass('tab-content-active');
+
+            $(this).addClass('tab-active');
+            content.eq(index).addClass('tab-content-active');
+
+        });
+
+//        $('#add-cart').click(function () {
+//            var book_id=$('_id').val();
+//            var postURL={book_id:book_id}
+//
+//            $.ajax({
+//                url: '/addCart',
+//                type: 'POST',
+//                data: postURL,
+//                success: function (data, status) {
+//                    if (status == 'success') {
+////                        location.href = 'login';
+//                    }
+//                },
+//                error: function (data, err) {
+////                    location.href = 'register';
+//                }
+//            })
+//
+//        })
+//
+
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+//书籍信息
+
+.book-detail {
+  width: 1280px;
+  margin: 0 auto;
+  //background-color: #00b3ee;
+  padding: 50px 100px;
+  @include clearfix;
+
+  img {
+    @include float-left;
+  }
+
+  div.book-right {
+    @include float-left;
+    //background-color: #1b6d85;
+    height: 236px;
+    padding: 0  40px;
+    position: relative;
+    h3{
+      font-size: 24px;
+      width: 300px;
+      white-space: nowrap;
+
+    }
+    p {
+      font-size: 12px;
+    }
+
+    a{
+      border: 1px solid #ccc;
+      padding: 6px 20px;
+      position: absolute;
+      bottom: 0;
+    }
+
+    #add-cart {
+      padding: 4px 20px;
+      background-color: aliceblue;
+      border: 1px solid #ccc;
+      @include border-radius(2px);
+      display: inline-block;
+      margin-top: 18px;
+    }
+
+  }
+}
+
+//选项卡部分
+
+.tabs-colorful-icons {
+  font: bold 13px sans-serif;
+
+  //margin: 30px auto 30px;
+  margin: 50px 100px;
+
+  //max-width: 480px;
+  text-align: center;
+
+  /* The tabs */
+  ul {
+    list-style: none;
+    text-align: left;
+
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      margin-bottom: -1px;
+
+      a {
+        display: block;
+        text-decoration: none;
+
+        font-size: 16px;
+
+        border: 1px solid transparent;
+        border-bottom: 0;
+        border-radius: 3px 3px 0 0;
+
+        padding: 15px 18px 10px;
+      }
+
+      i {
+        padding-right: 8px;
+      }
+
+    }
+  }
+
+  .first-tab {
+    color: #7494b7;
+  }
+  .second-tab {
+    color: #9274b7;
+  }
+  .third-tab {
+    color: #dbb43d;
+  }
+
+  .tab-active {
+    border-color: #dddddd;
+    background-color: #ffffff;
+  }
+
+  /* The content */
+  .tabs-content-placeholder {
+    overflow: hidden;
+    border: 1px solid #dddddd;
+    font-weight: normal;
+    background-color: #fff;
+
+    padding: 25px 32px 30px;
+    margin: 0 auto;
+    text-align: center;
+
+    div {
+      display: none;
+      pre {
+        height: 300px;
+      }
+
+      p {
+        color: #565a5c;
+        line-height: 1.45;
+        text-align: left;
+
+        margin: 5px 0 20px;
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    div.tab-content-active {
+      display: block;
+    }
+
+  }
+
+}
+
+@media (max-width: 500px) {
+
+  .tabs-colorful-icons ul li a {
+    font-size: 13px;
+    padding: 12px 15px;
+  }
+
+  .tabs-colorful-icons ul li i {
+    display: none;
+  }
+
+}
